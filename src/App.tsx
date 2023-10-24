@@ -3,21 +3,21 @@ import { TezosToolkit } from "@taquito/taquito";
 import "./App.css";
 import ConnectButton from "./components/ConnectWallet";
 import DisconnectButton from "./components/DisconnectWallet";
-import qrcode from "qrcode-generator";
 import UpdateContract from "./components/UpdateContract";
 import Transfers from "./components/Transfers";
+import { env } from './config';
 
-enum BeaconConnection {
-  NONE = "",
-  LISTENING = "Listening to P2P channel",
-  CONNECTED = "Channel connected",
-  PERMISSION_REQUEST_SENT = "Permission request sent, waiting for response",
-  PERMISSION_REQUEST_SUCCESS = "Wallet is connected",
-}
+// enum BeaconConnection {
+//   NONE = "",
+//   LISTENING = "Listening to P2P channel",
+//   CONNECTED = "Channel connected",
+//   PERMISSION_REQUEST_SENT = "Permission request sent, waiting for response",
+//   PERMISSION_REQUEST_SUCCESS = "Wallet is connected",
+// }
 
 const App = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(
-    new TezosToolkit("https://ghostnet.ecadinfra.com")
+    new TezosToolkit(env.rpc)
   );
   const [contract, setContract] = useState<any>(undefined);
   const [publicToken, setPublicToken] = useState<string | null>(null);
@@ -30,66 +30,10 @@ const App = () => {
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
   // Ghostnet Increment/Decrement contract
-  const contractAddress: string = "KT1QMGSLynvwwSfGbaiJ8gzWHibTCweCGcu8";
+  const contractAddress: string = env.contractAddress;
 
-  const generateQrCode = (): { __html: string } => {
-    const qr = qrcode(0, "L");
-    qr.addData(publicToken || "");
-    qr.make();
-
-    return { __html: qr.createImgTag(4) };
-  };
-
-  if (publicToken && (!userAddress || isNaN(userBalance))) {
-    return (
-      <div className="main-box">
-        <h1>Taquito React template</h1>
-        <div id="dialog">
-          <header>Try the Taquito React template!</header>
-          <div id="content">
-            <p className="text-align-center">
-              <i className="fas fa-broadcast-tower"></i>&nbsp; Connecting to
-              your wallet
-            </p>
-            <div
-              dangerouslySetInnerHTML={generateQrCode()}
-              className="text-align-center"
-            ></div>
-            <p id="public-token">
-              {copiedPublicToken ? (
-                <span id="public-token-copy__copied">
-                  <i className="far fa-thumbs-up"></i>
-                </span>
-              ) : (
-                <span
-                  id="public-token-copy"
-                  onClick={() => {
-                    if (publicToken) {
-                      navigator.clipboard.writeText(publicToken);
-                      setCopiedPublicToken(true);
-                      setTimeout(() => setCopiedPublicToken(false), 2000);
-                    }
-                  }}
-                >
-                  <i className="far fa-copy"></i>
-                </span>
-              )}
-
-              <span>
-                Public token: <span>{publicToken}</span>
-              </span>
-            </p>
-            <p className="text-align-center">
-              Status: {beaconConnection ? "Connected" : "Disconnected"}
-            </p>
-          </div>
-        </div>
-        <div id="footer">
-          <img src="built-with-taquito.png" alt="Built with Taquito" />
-        </div>
-      </div>
-    );
-  } else if (userAddress && !isNaN(userBalance)) {
+  if (userAddress && !isNaN(userBalance)) {
+    // when wallet is connected and the account has a balance
     return (
       <div className="main-box">
         <h1>Taquito Boilerplate</h1>
@@ -175,6 +119,7 @@ const App = () => {
       </div>
     );
   } else if (!publicToken && !userAddress && !userBalance) {
+    // When wallet is not connected (main screen)
     return (
       <div className="main-box">
         <div className="title">
