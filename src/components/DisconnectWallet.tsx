@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { BeaconWallet } from "@taquito/beacon-wallet";
-import { TezosToolkit } from "@taquito/taquito";
+import React, { Dispatch, SetStateAction } from 'react';
+import { BeaconWallet } from '@taquito/beacon-wallet';
+import { TezosToolkit } from '@taquito/taquito';
 import { env } from '../config';
 
 interface ButtonProps {
