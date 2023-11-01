@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import './Navbar.css'
-import Balance from '../Balance';
+import Balance from '../Info/Balance';
 
 const Navbar = ({balance}: {balance: number}) => {
   return (

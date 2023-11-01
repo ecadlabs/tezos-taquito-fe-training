@@ -1,6 +1,6 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { TezosToolkit, WalletContract } from '@taquito/taquito';
-import OperationHash from './OperationHash';
+import OperationHash from '../Info/OperationHash';
 
 interface UpdateContractProps {
   contract: WalletContract | any;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TezosToolkit } from '@taquito/taquito';
-import OperationHash from './OperationHash';
+import OperationHash from '../Info/OperationHash';
 
 const code = `parameter (or (or (int %decrement) (int %increment)) (unit %reset));
 storage int;

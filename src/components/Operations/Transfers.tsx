@@ -1,6 +1,6 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { TezosToolkit } from '@taquito/taquito';
-import OperationHash from './OperationHash';
+import OperationHash from '../Info/OperationHash';
 
 const Transfers = ({
   Tezos,

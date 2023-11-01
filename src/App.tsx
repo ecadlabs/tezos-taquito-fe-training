@@ -6,9 +6,9 @@ import { env } from './config';
 
 import ConnectButton from './components/ConnectWallet';
 import DisconnectButton from './components/DisconnectWallet';
-import UpdateContract from './components/UpdateContract' ;
-import Transfers from './components/Transfers';
-import Origination from './components/Originate';
+import UpdateContract from './components/Operations/UpdateContract' ;
+import Transfers from './components/Operations/Transfers';
+import Origination from './components/Operations/Originate';
 import Navbar from './components/Navigation/Navbar';
 
 import './App.css';
