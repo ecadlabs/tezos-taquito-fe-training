@@ -1,6 +1,7 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { BeaconWallet } from "@taquito/beacon-wallet";
-import { TezosToolkit } from "@taquito/taquito";
+import React, { Dispatch, SetStateAction } from 'react';
+import { BeaconWallet } from '@taquito/beacon-wallet';
+import { TezosToolkit } from '@taquito/taquito';
+import { env } from '../config';
 
 interface ButtonProps {
   wallet: BeaconWallet | null;
@@ -28,7 +29,7 @@ const DisconnectButton = ({
     setUserAddress("");
     setUserBalance(0);
     setWallet(null);
-    const tezosTK = new TezosToolkit("https://ghostnet.ecadinfra.com");
+    const tezosTK = new TezosToolkit(env.rpc);
     setTezos(tezosTK);
     setBeaconConnection(false);
     setPublicToken(null);

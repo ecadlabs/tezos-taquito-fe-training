@@ -6,6 +6,7 @@ body,
   margin: 0px;
   padding: 0px;
   font-size: 1rem;
+  font-family: "Roboto", sans-serif;
 }
 
 #root {
@@ -39,8 +40,6 @@ header {
   display: flex;
   flex-direction: column;
   width: 500px;
-  border: 1px solid #35636e;
-  border-radius: 3px;
 }
 
 #content {
@@ -53,6 +52,18 @@ header {
   display: flex;
   justify-content: flex-end;
   padding-top: 20px;
+}
+
+.balance-container {
+  display: flex;
+}
+
+.code-container {
+  border: 1px solid;
+}
+
+.code-block {
+  font-family: monospace;
 }
 
 .buttons {
