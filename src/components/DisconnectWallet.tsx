@@ -23,12 +23,15 @@ const DisconnectButton = ({
   setBeaconConnection
 }: ButtonProps): JSX.Element => {
   const disconnectWallet = async (): Promise<void> => {
+    // Clear active account from wallet
     if (wallet) {
       await wallet.clearActiveAccount();
     }
     setUserAddress("");
     setUserBalance(0);
     setWallet(null);
+
+    // Reinitialize TezosToolkit with RPC url
     const tezosTK = new TezosToolkit(env.rpc);
     setTezos(tezosTK);
     setBeaconConnection(false);

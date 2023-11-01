@@ -32,10 +32,13 @@ const ConnectButton = ({
 }: ButtonProps): JSX.Element => {
   const setup = async (userAddress: string): Promise<void> => {
     setUserAddress(userAddress);
-    // updates balance
+
+    // Check and update wallet balance when user connects wallet
     const balance = await Tezos.tz.getBalance(userAddress);
     setUserBalance(balance.toNumber());
-    // creates contract instance
+    
+    // Create contract instance
+    // Question: Why do we need to create a contract instance here?
     const contract = await Tezos.wallet.at(contractAddress);
     const storage: any = await contract.storage();
     setContract(contract);
@@ -46,7 +49,7 @@ const ConnectButton = ({
     try {
       await wallet.requestPermissions();
       
-      // gets user's address
+      // Grab user address from the wallet to pass to setup function
       const userAddress = await wallet.getPKH();
       await setup(userAddress);
       setBeaconConnection(true);
@@ -57,9 +60,9 @@ const ConnectButton = ({
 
   useEffect(() => {
     (async () => {
-      // creates a wallet instance
+      // Create wallet instance and set Tezos wallet provider
       const wallet = new BeaconWallet({
-        name: "Taquito React template",
+        name: "Taquito React Workshop",
         preferredNetwork: NetworkType.GHOSTNET,
         network: {
           type: NetworkType.GHOSTNET,

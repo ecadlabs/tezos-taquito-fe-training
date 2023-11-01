@@ -19,12 +19,17 @@ const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStora
   const increment = async (): Promise<void> => {
     setLoadingIncrement(true);
     try {
-      const op = await contract.methods.increment(1).send();
-      await op.confirmation();
-      setOpHash(op.opHash);
-      const newStorage: any = await contract.storage();
-      if (newStorage) setStorage(newStorage.toNumber());
-      setUserBalance(await Tezos.tz.getBalance(userAddress));
+      /**
+       *  Implement the increment method 
+       * 
+       *  Hint: 
+       *  - Call the increment entrypoint of the contract using Taquito
+       *  - Wait for the operation to be confirmed
+       *  - Set the operation hash to the state
+       *  - Get the new storage value and set it to the state
+       *  - Get the user balance and set it to the state
+       */
+
     } catch (error) {
       console.log(error);
     } finally {
@@ -35,12 +40,17 @@ const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStora
   const decrement = async (): Promise<void> => {
     setLoadingDecrement(true);
     try {
-      const op = await contract.methods.decrement(1).send();
-      await op.confirmation();
-      setOpHash(op.opHash);
-      const newStorage: any = await contract.storage();
-      if (newStorage) setStorage(newStorage.toNumber());
-      setUserBalance(await Tezos.tz.getBalance(userAddress));
+      /**
+       *  Implement the decrement method
+       * 
+       *  Hint: 
+       *  - Call the decrement entrypoint of the contract using Taquito
+       *  - Wait for the operation to be confirmed
+       *  - Set the operation hash to the state
+       *  - Get the new storage value and set it to the state
+       *  - Get the user balance and set it to the state
+       */
+
     } catch (error) {
       console.log(error);
     } finally {
