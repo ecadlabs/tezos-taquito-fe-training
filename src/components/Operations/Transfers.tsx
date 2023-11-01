@@ -20,16 +20,15 @@ const Transfers = ({
     if (recipient && amount) {
       setLoading(true);
       try {
-        const op = await Tezos.wallet
-          .transfer({ to: recipient, amount: parseInt(amount) })
-          .send();
-        await op.confirmation();
-        setOpHash(op.opHash);
-        console.log(op.opHash);
-        setRecipient("");
-        setAmount("");
-        const balance = await Tezos.tz.getBalance(userAddress);
-        setUserBalance(balance.toNumber());
+
+        /**
+         * Hint:
+         * - Implement transfer operation using the Wallet API
+         * - Grab operation hash and set it to state 
+         * - Clear recipient and amount inputs
+         * - Check the current balance in your wallet
+         * - Update the user balance in the state
+         */
       } catch (error) {
         console.log(error);
       } finally {

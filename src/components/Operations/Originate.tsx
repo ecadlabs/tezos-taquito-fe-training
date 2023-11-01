@@ -16,13 +16,9 @@ const Origination = ({
 
   const originateContract = async () => {
     try {
-      const op = await Tezos.wallet
-        .originate({
-          code,
-          storage: 10
-        })
-        .send();
-      setOpHash(op.opHash);
+      /**
+       * Hint: Originate the contract using the Wallet API and set operation hash to state
+       */
     } catch (error) {
       console.log(error);
     } finally {
