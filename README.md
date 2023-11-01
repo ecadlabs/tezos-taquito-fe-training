@@ -1,8 +1,8 @@
-# Taquito React template
+# Tezos Taquito Training - React 
 
 ![Built with Taquito][logo]
 
-A minimal React setup for starting developing Tezos DApps quickly with Taquito.
+A minimal React setup for starting developing Tezos dApps quickly with Taquito.
 
 ## Getting Started
 
